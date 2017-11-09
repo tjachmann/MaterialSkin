@@ -939,7 +939,7 @@ namespace MaterialSkin.Controls
 
         private readonly AnimationManager animationManager;
 
-        public BaseTextBox baseTextBox;
+        private readonly BaseTextBox baseTextBox;
         public MaterialSingleLineTextField()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
@@ -990,7 +990,7 @@ namespace MaterialSkin.Controls
             if (!animationManager.IsAnimating())
             {
                 //No animation
-				g.FillRectangle(baseTextBox.Focused ? SkinManager.ColorScheme.DarkPrimaryBrush : SkinManager.GetDividersBrush(), baseTextBox.Location.X, lineY, baseTextBox.Width, baseTextBox.Focused ? 2 : 1);
+				g.FillRectangle(baseTextBox.Focused ? SkinManager.ColorScheme.PrimaryBrush : SkinManager.GetDividersBrush(), baseTextBox.Location.X, lineY, baseTextBox.Width, baseTextBox.Focused ? 2 : 1);
             }
             else
             {
@@ -1003,7 +1003,7 @@ namespace MaterialSkin.Controls
                 g.FillRectangle(SkinManager.GetDividersBrush(), baseTextBox.Location.X, lineY, baseTextBox.Width, 1);
 
                 //Animated focus transition
-				g.FillRectangle(SkinManager.ColorScheme.DarkPrimaryBrush, animationStart - halfAnimationWidth, lineY, animationWidth, 2);
+				g.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, animationStart - halfAnimationWidth, lineY, animationWidth, 2);
             }
         }
 
@@ -1025,7 +1025,7 @@ namespace MaterialSkin.Controls
             baseTextBox.ForeColor = SkinManager.GetPrimaryTextColor();
         }
 
-        public class BaseTextBox : TextBox
+        private class BaseTextBox : TextBox
         {
             [DllImport("user32.dll", CharSet = CharSet.Auto)]
             private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
